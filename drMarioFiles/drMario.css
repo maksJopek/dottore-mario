@@ -1,0 +1,26 @@
+.rDot{ background: url("graphics/capsule/red/r_dot.png"); }
+.rDown{ background: url("graphics/capsule/red/r_down.png"); }
+.rLeft{ background: url("graphics/capsule/red/r_left.png"); }
+.rRight{ background: url("graphics/capsule/red/r_right.png"); }
+.rUp{ background: url("graphics/capsule/red/r_up.png"); }
+.rCovid{ background: url("graphics/smallCovid/r_covid.png"); }
+.rO{ background: url("graphics/destroying/r_o.png"); }
+.rX{ background: url("graphics/destroying/r_x.png"); }
+
+.bDot{ background: url("graphics/capsule/blue/b_dot.png"); }
+.bDown{ background: url("graphics/capsule/blue/b_down.png"); }
+.bLeft{ background: url("graphics/capsule/blue/b_left.png"); }
+.bRight{ background: url("graphics/capsule/blue/b_right.png"); }
+.bUp{ background: url("graphics/capsule/blue/b_up.png"); }
+.bCovid{ background: url("graphics/smallCovid/b_covid.png"); }
+.bO{ background: url("graphics/destroying/b_o.png"); }
+.bX{ background: url("graphics/destroying/b_x.png"); }
+
+.yDot{ background: url("graphics/capsule/yellow/y_dot.png"); }
+.yDown{ background: url("graphics/capsule/yellow/y_down.png"); }
+.yLeft{ background: url("graphics/capsule/yellow/y_left.png"); }
+.yRight{ background: url("graphics/capsule/yellow/y_right.png"); }
+.yUp{ background: url("graphics/capsule/yellow/y_up.png"); }
+.yCovid{ background: url("graphics/smallCovid/y_covid.png"); }
+.yO{ background: url("graphics/destroying/y_o.png"); }
+.yX{ background: url("graphics/destroying/y_x.png"); }
