@@ -59,7 +59,7 @@ let game = {
 			this.stopAnyInput = false;
 			return;
 		}
-		
+
 		let xShift = new Array(2).fill(0),
 			yShift = [0, 0];
 		if(direction === "down")
@@ -88,7 +88,7 @@ let game = {
 				[xShift[0], xShift[1], yShift[0], yShift[1]] = [0, 0, -1, -1];
 			else
 				[xShift[0], xShift[1], yShift[0], yShift[1]] = [0, Infinity, -1, 0];
-			
+
 		}
 		if(!this.isTdBlank(this.capsule[0].x + xShift[0], this.capsule[0].y + yShift[0])
 			|| !this.isTdBlank(this.capsule[1].x + xShift[1], this.capsule[1].y + yShift[1]))
@@ -111,14 +111,14 @@ let game = {
 		else
 		{
 			this.removeCapsuleFromGameBoard();
-			
+
 			if(yShift.includes(-1) || yShift.includes(1))
 				for(let cap of this.capsule)
 					cap.y += yShift.includes(-1) ? -1 : 1;
 			if(xShift.includes(-1) || xShift.includes(1))
 				for(let cap of this.capsule)
 					cap.x += yShift.includes(-1) ? -1 : 1;
-			
+
 			this.putCapsuleOnGameBoard();
 			if(direction === "down" && !isItInterval)
 			{
@@ -173,7 +173,7 @@ let game = {
 			if(colorChange)
 				[this.capsule[0].color, this.capsule[1].color] = [this.capsule[1].color, this.capsule[0].color];
 			this.putCapsuleOnGameBoard();
-			
+
 		}
 	},
 	sweepGameBoard()
@@ -197,7 +197,7 @@ let game = {
 				"vertical",
 				"vertical"
 			];
-		
+
 		for(let i = 0; i < 3; i++)
 		{
 			if(i < 2)
@@ -205,11 +205,11 @@ let game = {
 			else
 				toBeSweptTemp = this.checkForSweep(0, swipes[i]).concat(
 					this.checkForSweep(1, swipes[i]));
-			
+
 			toBeSwept.push(...toBeSweptTemp);
 			toBeSweptTemp = [];
 		}
-		
+
 		if(toBeSwept.deleteSameObjects().length >= 4)
 			this.sweepWhatShouldBeSwept(toBeSwept);
 		else
@@ -218,20 +218,20 @@ let game = {
 	checkForSweep(from, direction, badge = {})
 	{
 		let toBeSwept = [], xSwipe = [], ySwipe = [], x, y, color;
-		
+
 		if(badge.isEmpty())
 			[x, y, color] = [this.capsule[from].x, this.capsule[from].y, this.capsule[from].color];
 		else
 			[x, y, color] = [badge.x, badge.y, badge.color];
-		
+
 		if(color === "")
 			color = ":)";
-		
+
 		if(direction === "horizontal")
 			[xSwipe, ySwipe] = [[0, 0], [-1, 1]];
 		else
 			[xSwipe, ySwipe] = [[-1, 1], [0, 0]];
-		
+
 		for(let i = 0; i < xSwipe.length; i++)
 		{
 			let xT = x, yT = y;
@@ -242,7 +242,7 @@ let game = {
 				xT += xSwipe[i];
 			}
 		}
-		
+
 		return toBeSwept.deleteSameObjects().length < 4 ? [] : toBeSwept;
 	},
 	checkWholeGameBoardForSweepes()
@@ -320,9 +320,9 @@ let game = {
 	{
 		this.makeDots();
 		this.removeWillFallFromGameBoard();
-		
+
 		let toFall = this.getWhatShouldFall();
-		
+
 		if(toFall.length)
 		{
 			this.removeWillFallFromGameBoard();
@@ -355,7 +355,7 @@ let game = {
 	{
 		if(!this.isTdEmpty(x + 1, y))
 			return [[false], [{x: x, y: y}]];
-		
+
 		let secondPart = checkForSecondPart ? this.isItPartOfCapsule(x, y) : {};
 		if(!secondPart.isEmpty())
 		{
@@ -375,7 +375,7 @@ let game = {
 			if(!(x + xSwipe).isInRange(0, GAME_BOARD_HEIGHT, 'l')
 				|| !(y + ySwipe).isInRange(0, GAME_BOARD_WIDTH, 'l'))
 				continue;
-			
+
 			if(this.getId(x + xSwipe, y + ySwipe) === this.getId(x, y))
 				return {x: x + xSwipe, y: y + ySwipe};
 		}
@@ -385,7 +385,7 @@ let game = {
 	{
 		let toFallChecks = new Array(toFall.length).fill(true);
 		let i = 1, j = 0;
-		
+
 		toFall.sort((a, b) => this.max(b[0].x, b[1]?.x) - this.max(a[0].x, a[1]?.x));
 		for(const tds of toFall)
 			tds.sort((a, b) => this.max(b.x, b?.x) - this.max(a.x, a?.x));
@@ -463,7 +463,7 @@ let game = {
 	{
 		let oldTd = this.getTd(oldX, oldY),
 			newTd = this.getTd(newX, newY);
-		
+
 		newTd.className = oldTd.className;
 		newTd.dataset.id = oldTd.dataset.id;
 		if(oldTd.dataset.willFall !== undefined)
@@ -513,7 +513,7 @@ let game = {
 		div.style.left = state === "gameOver" ? (14 * 16).toPixels() : (12 * 16).toPixels();
 		div.style.width = state === "gameOver" ? (224).toPixels() : (288).toPixels();
 		div.style.height = (80).toPixels();
-		div.style.background = `url("https://jopek.eu/maks/szkola/apkKli/drMarioFiles/graphics/${state}.png")`;
+		div.style.background = `url("drMarioFiles/graphics/${state}.png")`;
 		if(state === "gameOver")
 		{
 			div = document.getElementById(state + "Doctor");
@@ -522,13 +522,13 @@ let game = {
 			div.style.left = (472).toPixels();
 			div.style.width = (124).toPixels();
 			div.style.height = (126).toPixels();
-			div.style.background = `url("https://jopek.eu/maks/szkola/apkKli/drMarioFiles/graphics/${state}Doctor.png")`;
-			let url = "https://jopek.eu/maks/szkola/apkKli/drMarioFiles/graphics/bigCovid/",
+			div.style.background = `url("drMarioFiles/graphics/${state}Doctor.png")`;
+			let url = "drMarioFiles/graphics/bigCovid/",
 				covids = [], colors = ["yellow", "red", "blue"], i = 0, frames = [2, 4];
-			
+
 			for(const color of colors)
 				covids.push(document.getElementById("covid" + color.title()));
-			
+
 			this.covidInterval = setInterval(() => {
 				if(i === frames.length)
 					i = 0;
@@ -624,7 +624,7 @@ let game = {
 			let x = getRandomInt(Math.floor((1 / 3) * GAME_BOARD_HEIGHT), GAME_BOARD_HEIGHT),
 				y = getRandomInt(0, GAME_BOARD_WIDTH),
 				color = this.colors[i % this.colors.length];
-			
+
 			if(this.isTdBlank(x, y))
 			{
 				this.makeTdColorful(x, y, color, id--, "covid");
@@ -634,9 +634,9 @@ let game = {
 	},
 	generateBigCovids()
 	{
-		let url = "https://jopek.eu/maks/szkola/apkKli/drMarioFiles/graphics/bigCovid/",
+		let url = "drMarioFiles/graphics/bigCovid/",
 			covids = [], colors = ["yellow", "red", "blue"], positions = [0, 6, 12], i = 0, frames = [2, 1, 2, 3, 2];
-		
+
 		for(const color of colors)
 		{
 			let div = document.getElementById("covid" + color.title());
@@ -667,12 +667,12 @@ let game = {
 			});
 			i++;
 		}, 210);
-		
+
 	},
 	generateHands()
 	{
 		let width, height, top, left,
-			url = "https://jopek.eu/maks/szkola/apkKli/drMarioFiles/graphics/hands/";
+			url = "drMarioFiles/graphics/hands/";
 		for(const hand of ["up", "middle", "down"])
 		{
 			let div = document.createElement("div");
@@ -689,10 +689,10 @@ let game = {
 			div.style.top = top;
 			div.style.left = left;
 			div.style.background = `url("${url + hand + '.png'}")`;
-			
+
 			if(hand !== "up")
 				div.style.display = "none";
-			
+
 			this.divGame.appendChild(div);
 		}
 	},
@@ -704,8 +704,8 @@ let game = {
 		while(value.length !== maxLength)
 			value = '0' + value;
 		let top, left,
-			url = "https://jopek.eu/maks/szkola/apkKli/drMarioFiles/graphics/numbers/";
-		
+			url = "drMarioFiles/graphics/numbers/";
+
 		if(display === "top")
 			[top, left] = [80, 80];
 		else if(display === "score")
@@ -729,7 +729,7 @@ let game = {
 			if(div.style.background !== newBackground)
 				div.style.background = newBackground;
 		});
-		
+
 	},
 	setKeyboardEvents()
 	{
@@ -754,8 +754,8 @@ let game = {
 		this.divGame = divGame;
 		divGame.style.width = (640).toPixels();
 		divGame.style.height = (384).toPixels();
-		divGame.style.background = "url('https://jopek.eu/maks/szkola/apkKli/drMarioFiles/graphics/bg.png')";
-		
+		divGame.style.background = "url('drMarioFiles/graphics/bg.png')";
+
 		let gameBoard = document.getElementById("gameBoard");
 		this.gameBoard = gameBoard;
 		gameBoard.style.width = (128).toPixels();
@@ -763,7 +763,7 @@ let game = {
 		gameBoard.style.position = "absolute";
 		gameBoard.style.top = (96).toPixels();
 		gameBoard.style.left = (272).toPixels();
-		
+
 		for(let i = 0; i < GAME_BOARD_HEIGHT; i++)
 		{
 			let tr = document.createElement("tr");
